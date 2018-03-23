@@ -23,19 +23,17 @@ class OauthController extends Controller
             $authorizationUrl = $provider->getAuthorizationUrl();
 
             // Get the state generated for you and store it to the session.
-            session()->put("$provider->getState()");
+            session()->put("oauth2state", $provider->getState());
 
             // Redirect the user to the authorization URL.
             header('Location: ' . $authorizationUrl);
             exit;
 
 // Check given state against previously stored one to mitigate CSRF attack
-        } elseif (empty($_GET['state']) || (isset($_SESSION['oauth2state']) && $_GET['state'] !== $_SESSION['oauth2state'])) {
+        } elseif (empty($_GET['state']) || (session()->has("oauth2state") && $_GET['state'] !== session()->has("oauth2state"))) {
 
-            if (isset($_SESSION['oauth2state'])) {
-                unset($_SESSION['oauth2state']);
-            }
-
+            if (session()->has("oauth2state"))
+                session()->remove('oauth2state');
             exit('Invalid state');
 
         } else {
