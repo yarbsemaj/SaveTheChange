@@ -30,13 +30,14 @@ class OauthController extends Controller
             exit;
 
 // Check given state against previously stored one to mitigate CSRF attack
-        } elseif (empty($_GET['state']) || (session()->has("oauth2state") && $_GET['state'] !== session()->has("oauth2state"))) {
-
-            if (session()->has("oauth2state"))
-                session()->remove('oauth2state');
-            exit('Invalid state');
-
         } else {
+            /*if (empty($_GET['state']) || (session()->has("oauth2state") && $_GET['state'] !== session()->has("oauth2state"))) {
+
+               if (session()->has("oauth2state"))
+                   session()->remove('oauth2state');
+               exit('Invalid state');
+
+           } else {*/
 
             try {
 
