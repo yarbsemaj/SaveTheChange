@@ -11,7 +11,8 @@ class OauthController extends Controller
             'clientSecret' => env("clientSecret"),   // The client password assigned to you by the provider
             'urlAuthorize' => 'https://oauth.starlingbank.com/',
             'urlAccessToken' => 'https://api.starlingbank.com/oauth/access-token',
-            'urlResourceOwnerDetails' => 'https://api.starlingbank.com/api/v1/me'
+            'urlResourceOwnerDetails' => 'https://api.starlingbank.com/api/v1/me',
+            'redirectUri' => "http://savethechange.yarbsemaj.com/api/callback"
         ]);
 
 // If we don't have an authorization code then get one
@@ -30,14 +31,13 @@ class OauthController extends Controller
             exit;
 
 // Check given state against previously stored one to mitigate CSRF attack
+        } elseif (empty($_GET['state']) || (session()->has("oauth2state") && $_GET['state'] !== session()->has("oauth2state"))) {
+
+            if (session()->has("oauth2state"))
+                session()->remove('oauth2state');
+            exit('Invalid state');
+
         } else {
-            /*if (empty($_GET['state']) || (session()->has("oauth2state") && $_GET['state'] !== session()->has("oauth2state"))) {
-
-               if (session()->has("oauth2state"))
-                   session()->remove('oauth2state');
-               exit('Invalid state');
-
-           } else {*/
 
             try {
 
