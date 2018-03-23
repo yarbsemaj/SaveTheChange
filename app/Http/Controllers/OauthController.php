@@ -40,7 +40,7 @@ class OauthController extends Controller
         } else {
 
             try {
-
+                print $_GET['code'];
                 // Try to get an access token using the authorization code grant.
                 $accessToken = $provider->getAccessToken('authorization_code', [
                     'code' => $_GET['code']
