@@ -9,9 +9,9 @@ class OauthController extends Controller
         $provider = new \League\OAuth2\Client\Provider\GenericProvider([
             'clientId' => env("clientId"),    // The client ID assigned to you by the provider
             'clientSecret' => env("clientSecret"),   // The client password assigned to you by the provider
-            'urlAuthorize' => 'https://oauth.starlingbank.com/',
-            'urlAccessToken' => 'https://api.starlingbank.com/oauth/access-token',
-            'urlResourceOwnerDetails' => 'https://api.starlingbank.com/api/v1/me',
+            'urlAuthorize' => env("authURL"),
+            'urlAccessToken' => env("apiURL") . '/oauth/access-token',
+            'urlResourceOwnerDetails' => env("apiURL") . '/api/v1/me',
             'redirectUri' => "https://savethechange.yarbsemaj.com/api/callback"
         ]);
 
