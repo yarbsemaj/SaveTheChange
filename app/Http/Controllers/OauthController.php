@@ -12,7 +12,7 @@ class OauthController extends Controller
             'urlAuthorize' => 'https://oauth.starlingbank.com/',
             'urlAccessToken' => 'https://api.starlingbank.com/oauth/access-token',
             'urlResourceOwnerDetails' => 'https://api.starlingbank.com/api/v1/me',
-            'redirectUri' => "http://savethechange.yarbsemaj.com/api/callback"
+            'redirectUri' => "https://savethechange.yarbsemaj.com/api/callback"
         ]);
 
 // If we don't have an authorization code then get one
