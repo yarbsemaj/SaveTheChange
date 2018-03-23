@@ -70,6 +70,7 @@ class OauthController extends Controller
 
             } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 
+                print_r($e->getResponseBody());
                 // Failed to get the access token or user details.
                 exit($e->getMessage());
 
