@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class OauthController extends Controller
 {
     public function authorise()
@@ -25,7 +23,7 @@ class OauthController extends Controller
             $authorizationUrl = $provider->getAuthorizationUrl();
 
             // Get the state generated for you and store it to the session.
-            $_SESSION['oauth2state'] = $provider->getState();
+            session()->put("$provider->getState()");
 
             // Redirect the user to the authorization URL.
             header('Location: ' . $authorizationUrl);
