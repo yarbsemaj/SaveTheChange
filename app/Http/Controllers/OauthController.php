@@ -12,7 +12,7 @@ class OauthController extends Controller
             'urlAuthorize' => env("authURL"),
             'urlAccessToken' => env("apiURL") . '/oauth/access-token',
             'urlResourceOwnerDetails' => env("apiURL") . '/api/v1/me',
-            'redirectUri' => "https://savethechange.yarbsemaj.com/api/callback"
+            'redirectUri' => "http://savethechange.yarbsemaj.com/api/callback"
         ]);
 
 // If we don't have an authorization code then get one
