@@ -39,8 +39,7 @@ class OauthController extends Controller
 
         } else {
 
-            try {
-                print $_GET['code'];
+            //try {
                 // Try to get an access token using the authorization code grant.
                 $accessToken = $provider->getAccessToken('authorization_code', [
                     'code' => $_GET['code']
@@ -68,13 +67,13 @@ class OauthController extends Controller
                 //    $accessToken
                 //);
 
-            } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-
-                print_r($e->getResponseBody());
+            //} catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+//
+//                print_r($e->getResponseBody());
                 // Failed to get the access token or user details.
-                exit($e->getMessage());
+//                exit($e->getMessage());
 
-            }
+//            }
 
         }
     }
