@@ -20,7 +20,7 @@ Route::get('/login', 'OauthController@authorise');
 Route::post('/logout', function () {
     session()->remove("user_id");
     return redirect(route("welcome"));
-});
+})->name("logout");
 
 Route::get('/home', function () {
     return view("home");
