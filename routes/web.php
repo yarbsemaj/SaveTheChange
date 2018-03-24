@@ -16,3 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 'OauthController@authorise');
+
+Route::get('/user', function () {
+    return apiRequestForCurrentUser("/api/v1/customers", "GET");
+});
+
+

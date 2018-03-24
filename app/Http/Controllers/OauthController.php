@@ -59,7 +59,7 @@ class OauthController extends Controller
                     [
                         "access_token" => $accessToken->getToken(),
                         "refresh_token" => $accessToken->getRefreshToken(),
-                        "expires_at" => $accessToken->getToken()
+                        "expires_at" => $accessToken->getExpires()
                     ]);
 
                 session()->put("user_id", $user->id);
