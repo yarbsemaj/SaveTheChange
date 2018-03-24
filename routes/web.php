@@ -21,4 +21,7 @@ Route::get('/user', function () {
     return apiRequestForCurrentUser("/api/v1/customers", "GET");
 });
 
+Route::get('api/callback', 'OauthController@authorise');
+
+
 
