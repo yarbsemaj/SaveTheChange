@@ -36,9 +36,9 @@ if (!function_exists('getAccessToken')) {
     function getAccessToken($userID)
     {
         print $userID;
-        $user = \App\StarlingUser::find($userID);
+        $user = \App\StarlingUser::find(1);
 
-        return refreshToken(new \League\OAuth2\Client\Token\AccessToken($user->toArray()), $userID);
+        return refreshToken(new \League\OAuth2\Client\Token\AccessToken($user->toArray()), 1);
     }
 }
 
