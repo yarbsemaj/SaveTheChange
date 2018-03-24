@@ -2,5 +2,5 @@
 
 
 @section("content")
-    {{getCurrentUser()->goals}}
+    @php print_r(getCurrentUser()->goals)@endphp
 @endsection
