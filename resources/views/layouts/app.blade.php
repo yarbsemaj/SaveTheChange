@@ -27,7 +27,7 @@
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">{{_t('Toggle Navigation')}}</span>
+                    <span class="sr-only">{{'Toggle Navigation'}}</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -39,17 +39,6 @@
             @include("layouts.navbar")
         </div>
     </nav>
-    <script type="text/javascript">
-        @foreach ($errors->all() as $error)
-        $.notify({
-            title: "<strong>{{_t("Error")}}:</strong> ",
-            message: "{{_t($error)}}",
-            icon: "fas fa-exclamation-triangle"
-        }, {
-            type: "danger"
-        });
-        @endforeach
-    </script>
     @yield('content')
 </div>
 
