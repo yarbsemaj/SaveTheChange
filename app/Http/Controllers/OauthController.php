@@ -52,12 +52,15 @@ class OauthController extends Controller
                 $resourceOwner = $this->provider->getResourceOwner($accessToken);
 
 
-                $user = StarlingUser::firstOrCreate(
-                    ["customer_uid" => $resourceOwner->toArray()['customerUid']],
+                $user = StarlingUser::updateOrCreate(
+                    [
+                        "customer_uid" => $resourceOwner->toArray()['customerUid']
+                    ],
                     [
                         "access_token" => $accessToken->getToken(),
                         "refresh_token" => $accessToken->getRefreshToken(),
-                        "expires_at" => $accessToken->getToken()]);
+                        "expires_at" => $accessToken->getToken()
+                    ]);
 
                 session()->put("user_id", $user->id);
             } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
