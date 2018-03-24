@@ -2,5 +2,5 @@
 
 
 @section("content")
-    {{getUser()->goals}}
+    {{getCurrentUser()->goals}}
 @endsection
