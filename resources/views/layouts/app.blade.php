@@ -8,19 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield("title",config('app.name', 'Pre-Empt 2'))</title>
+    <title>@yield("title",config('app.name', 'Save The Change'))</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/feedback.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/pre-empt.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
-
     @stack("scripts")
 </head>
 <body>
@@ -39,7 +34,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Pre-Empt 2') }}</a>
+                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Save the Change') }}</a>
             </div>
             @include("layouts.navbar")
         </div>
@@ -56,23 +51,11 @@
         @endforeach
     </script>
     @yield('content')
-    @include('inc.footer')
 </div>
 
 <script>
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover();
-    });
-</script>
-
-<script src="{{asset("js/feedback.js")}}"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        Feedback({
-            h2cPath: '{{asset('js/html2canvas.js')}}',
-            url: '{{route("feedback.post")}}'
-        });
     });
 </script>
 

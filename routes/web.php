@@ -13,12 +13,17 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("welcome");
 
 Route::get('/login', 'OauthController@authorise');
 
-Route::get('/user', function () {
-    return apiRequestForCurrentUser("/api/v1/customers", "GET");
+Route::post('/logout', function () {
+    session()->remove("user_id");
+    return redirect(route("welcome"));
+});
+
+Route::post('/home', function () {
+    return view("home");
 });
 
 Route::get('api/callback', 'OauthController@authorise');

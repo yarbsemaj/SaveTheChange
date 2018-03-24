@@ -35,10 +35,9 @@ if (!function_exists('refreshToken')) {
 if (!function_exists('getAccessToken')) {
     function getAccessToken($userID)
     {
-        print $userID;
-        $user = \App\StarlingUser::find(1);
+        $user = \App\StarlingUser::find($userID);
 
-        return refreshToken(new \League\OAuth2\Client\Token\AccessToken($user->toArray()), 1);
+        return refreshToken(new \League\OAuth2\Client\Token\AccessToken($user->toArray()), $userID);
     }
 }
 
@@ -66,5 +65,22 @@ if (!function_exists('apiRequestForCurrentUser')) {
             getAccessToken(session()->get("user_id")),
             $options);
         return $provider->getParsedResponse($request);
+    }
+}
+
+if (!function_exists('validateUserCurrentUser')) {
+    function validateUserCurrentUser()
+    {
+        if (!session()->has("user_id")) return false;
+        $accessToken = getAccessToken(session()->get("user_id"));
+        if (!getProvider()->getResourceOwner($accessToken)->toArray()["authenticated"]) return false;
+        return true;
+    }
+}
+
+if (!function_exists('getCurrentUser')) {
+    function getCurrentUser()
+    {
+        return \App\StarlingUser::find(session()->get("user_id"));
     }
 }

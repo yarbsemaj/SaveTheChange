@@ -13,4 +13,16 @@ class StarlingUser extends Model
     {
         return $this->expires_at;
     }
+
+    public function getNameAttribute()
+    {
+        $data = apiRequest(getAccessToken($this->id), "/api/v1/customers", "GET");
+        return $data["firstName"] . " " . $data["lastName"];
+    }
+
+    public function getGoalsAttribute()
+    {
+        $data = apiRequest(getAccessToken($this->id), "/api/v1/savings-goals", "GET");
+        return $data;
+    }
 }
